@@ -1,4 +1,5 @@
 var LiveForm = require("./LiveForm");
+var random = require("./random");
 
 module.exports =  class Monster extends LiveForm {
     constructor(x, y, index){
