@@ -5,6 +5,7 @@ module.exports =  class Monster extends LiveForm {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 8;
+        this.index = 3;
     }
    getNewCoordinates() {
     this.directions = [

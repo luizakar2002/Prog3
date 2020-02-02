@@ -6,6 +6,7 @@ module.exports = class SecondCharacter extends LiveForm {
         super(x, y, index);
         this.multiply = 0;
         this.energy = 20;
+        this.index = 5;
 
     }
    getNewCoordinates() {

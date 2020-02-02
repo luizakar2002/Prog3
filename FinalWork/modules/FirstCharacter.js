@@ -1,11 +1,13 @@
 var LiveForm = require("./LiveForm");
 var random = require("./random");
+var Monster = require("./Monster");
 
 module.exports =  class FirstCharacter extends LiveForm {
     constructor(x, y, index){
         super(x, y, index);
         this.multiply = 0;
         this.energy = 15;
+        this.index = 4;
 
     }
    getNewCoordinates() {

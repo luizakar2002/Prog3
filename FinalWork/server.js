@@ -27,11 +27,11 @@ sndcharHashiv = 0;
 
 
 //! Creating MATRIX -- START
-function matrixGenerator(matrixSize, grass, grassEater, MonsterArr, first, second) {
+function matrixGenerator(matrixSize, grass, grassEater, monster, first, second) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
-        for (let o = 0; o < matrixSize; o++) {
-            matrix[i][o] = 0;
+        for (let j = 0; j < matrixSize; j++) {
+            matrix[i][j] = 0;
         }
     }
     for (let i = 0; i < grass; i++) {
@@ -44,7 +44,7 @@ function matrixGenerator(matrixSize, grass, grassEater, MonsterArr, first, secon
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 2;
     }
-    for (let i = 0; i < MonsterArr; i++) {
+    for (let i = 0; i < monster; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 3;
@@ -60,7 +60,8 @@ function matrixGenerator(matrixSize, grass, grassEater, MonsterArr, first, secon
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(20, 1, 1, 2, 5, 3);
+matrixGenerator(20, 5, 5, 5, 5, 10);
+//console.log(matrix);
 //! Creating MATRIX -- END 
 
 
@@ -113,8 +114,33 @@ function creatingObjects() {
     }
 }
 creatingObjects();
+// console.log(grassArr.length);
+// console.log(grassEaterArr.length);
+// console.log(MonsterArr.length);
+// console.log(FirstCharacterArr.length);
+// console.log(SecondCharacterArr.length);
+
 
 function game() {
+    timeforseason++;
+    if (timeforseason >= 0 && timeforseason <= 5) {
+        season = "winter";
+    }
+    else if (timeforseason >= 6 && timeforseason <= 11) {
+        season = "spring";
+    }
+    else if (timeforseason >= 12 && timeforseason <= 17) {
+        season = "summer";
+    }
+    else if (timeforseason >= 18 && timeforseason <= 23) {
+        season = "autumn";
+    }
+    else{
+        timeforseason = 0;
+    }    
+
+
+
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
             grassArr[i].mul();
@@ -160,11 +186,13 @@ function game() {
         grassEaterCounter: grassEaterHashiv,
         monsterCounter: monsterHashiv,
         firstCharacterCounter: fstcharHashiv,
-        secondCharacterCounter: sndcharHashiv
+        secondCharacterCounter: sndcharHashiv,
+        season: season
     }
-
+    
     //! Send data over the socket to clients who listens "data"
     io.sockets.emit("data", sendData);
+    //console.log(sendData)
 }
 
 

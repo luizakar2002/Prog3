@@ -26,7 +26,7 @@ function setup() {
         //! Every time it creates new Canvas woth new matrix size
         createCanvas(matrix[0].length * side, matrix.length * side)
         //! clearing background by setting it to new grey color
-        background('#acacac');
+        background('#ffffff');
         //! Draw grassCount and grassEaterCount to HTML (use DOM objects to update information, yes, and use .innerText <- function)
 
         //! Drawing and coloring RECTs
@@ -39,7 +39,7 @@ function setup() {
                     fill("orange");
                     rect(j * side, i * side, side, side);
                 } else if (matrix[i][j] == 0) {
-                    fill('#acacac');
+                    fill('#ffffff');
                     rect(j * side, i * side, side, side);
                 } else if (matrix[i][j] == 3) {
                     fill('red');
