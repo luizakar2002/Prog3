@@ -5,7 +5,9 @@ var GrassEater = require("./modules/GrassEater.js");
 var Monster = require("./modules/Monster.js");
 var FirstCharacter = require("./modules/FirstCharacter.js");
 var SecondCharacter = require("./modules/SecondCharacter.js");
+var ThirdCharacter = require("./modules/ThirdCharacter.js");
 let random = require('./modules/random');
+timeforseason = 0;
 //! Requiring modules  --  END
 
 
@@ -15,19 +17,19 @@ grassEaterArr = [];
 MonsterArr = [];
 FirstCharacterArr = [];
 SecondCharacterArr = [];
+ThirdCharacterArr = [];
 matrix = [];
 grassHashiv = 0;
 grassEaterHashiv = 0;
 monsterHashiv = 0;
 fstcharHashiv = 0;
 sndcharHashiv = 0;
+thirdcharHashiv = 0;
 //! Setting global arrays  -- END
 
 
-
-
 //! Creating MATRIX -- START
-function matrixGenerator(matrixSize, grass, grassEater, monster, first, second) {
+function matrixGenerator(matrixSize, grass, grassEater, monster, first, second, third) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
         for (let j = 0; j < matrixSize; j++) {
@@ -59,8 +61,13 @@ function matrixGenerator(matrixSize, grass, grassEater, monster, first, second) 
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 5;
     }
+    for (let i = 0; i < third; i++) {
+        let customX = Math.floor(random(matrixSize));
+        let customY = Math.floor(random(matrixSize));
+        matrix[customY][customX] = 6;
+    }
 }
-matrixGenerator(20, 5, 5, 5, 5, 10);
+matrixGenerator(20, 100, 50, 50, 50, 50, 50);
 //console.log(matrix);
 //! Creating MATRIX -- END 
 
@@ -108,6 +115,11 @@ function creatingObjects() {
                 SecondCharacterArr.push(second);
                 sndcharHashiv++;
             }
+            else if (matrix[y][x] == 6) {
+                var third = new ThirdCharacter(x, y);
+                ThirdCharacterArr.push(third);
+                thirdcharHashiv++;
+            }
 
 
         }
@@ -119,6 +131,9 @@ creatingObjects();
 // console.log(MonsterArr.length);
 // console.log(FirstCharacterArr.length);
 // console.log(SecondCharacterArr.length);
+
+
+
 
 
 function game() {
@@ -178,6 +193,14 @@ function game() {
             SecondCharacterArr[i].die();
         }
     }
+    if (ThirdCharacterArr[0] !== undefined) {
+        for (var i in ThirdCharacterArr) {
+            ThirdCharacterArr[i].move();
+            ThirdCharacterArr[i].eat();
+            ThirdCharacterArr[i].mul();
+            ThirdCharacterArr[i].die();
+        }
+    }
 
     //! Object to send
     let sendData = {
@@ -187,6 +210,7 @@ function game() {
         monsterCounter: monsterHashiv,
         firstCharacterCounter: fstcharHashiv,
         secondCharacterCounter: sndcharHashiv,
+        thirdCharacterCounter: thirdcharHashiv,
         season: season
     }
     
