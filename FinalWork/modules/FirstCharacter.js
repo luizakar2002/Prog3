@@ -97,6 +97,7 @@ mul() {
     var newCell = random(this.chooseCell(0));
 
     if (this.energy >= 17 && newCell) {
+        fstcharHashiv ++;
         var newFirstCharacter = new FirstCharacter(newCell[0], newCell[1], this.index);
         FirstCharacterArr.push(newFirstCharacter);
         matrix[newCell[1]][newCell[0]] = this.index;

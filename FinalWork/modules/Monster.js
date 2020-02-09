@@ -82,6 +82,7 @@ mul() {
     var newCell = random(this.chooseCell(0));
 
     if (this.energy >= 10 && newCell) {
+        monsterHashiv++;
         var newMonster = new Monster(newCell[0], newCell[1], this.index);
         MonsterArr.push(newMonster);
         matrix[newCell[1]][newCell[0]] = 3;

@@ -67,7 +67,7 @@ function matrixGenerator(matrixSize, grass, grassEater, monster, first, second, 
         matrix[customY][customX] = 6;
     }
 }
-matrixGenerator(20, 100, 50, 50, 50, 50, 50);
+matrixGenerator(30, 200, 100, 150, 150, 150, 150);
 //console.log(matrix);
 //! Creating MATRIX -- END 
 
@@ -82,7 +82,7 @@ app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
 });
-server.listen(3000);
+server.listen(3001);
 //! SERVER STUFF END  --  END
 
 
@@ -179,7 +179,9 @@ function game() {
     }
     if (FirstCharacterArr[0] !== undefined) {
         for (var i in FirstCharacterArr) {
+            if(season == "winter"){
             FirstCharacterArr[i].jump();
+            }
             FirstCharacterArr[i].eat();
             FirstCharacterArr[i].mul();
             FirstCharacterArr[i].die();
